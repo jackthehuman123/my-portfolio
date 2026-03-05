@@ -3,12 +3,23 @@ import { useEffect, useRef } from "react";
 import anime from "animejs";
 import { Profile } from "@/types";
 import { Button } from "@/components/ui/button";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function Hero({ profile }: { profile: Profile }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const shouldReduce = useReducedMotion();
 
   useEffect(() => {
-    // Main entrance timeline
+    if (shouldReduce) {
+      // Just fade everything in instantly on mobile
+      const els = document.querySelectorAll(
+        ".hero-letter, .hero-title, .hero-bio, .hero-buttons, .hero-socials",
+      );
+      els.forEach((el) => ((el as HTMLElement).style.opacity = "1"));
+      return;
+    }
+
+    // Full animation on desktop
     anime
       .timeline({ easing: "easeOutExpo" })
       .add({
@@ -56,7 +67,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         "-=200",
       );
 
-    // Floating orbs — loop forever
+    // Only run orb animation on desktop
     anime({
       targets: ".orb-1",
       translateY: [-20, 20],
@@ -76,9 +87,8 @@ export default function Hero({ profile }: { profile: Profile }) {
       duration: 5000,
       easing: "easeInOutSine",
     });
-  }, []);
+  }, [shouldReduce]);
 
-  // Split name into individual letters for stagger animation
   const letters = profile.name.split("").map((char, i) => (
     <span
       key={i}
@@ -91,41 +101,39 @@ export default function Hero({ profile }: { profile: Profile }) {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-[#0a0a0a]">
-      {/* Background orbs */}
-      <div className="orb-1 absolute w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] top-10 -left-20 pointer-events-none" />
-      <div className="orb-2 absolute w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] bottom-10 -right-20 pointer-events-none" />
+      {/* Only render orbs on desktop */}
+      {!shouldReduce && (
+        <>
+          <div className="orb-1 absolute w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] top-10 -left-20 pointer-events-none" />
+          <div className="orb-2 absolute w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] bottom-10 -right-20 pointer-events-none" />
+        </>
+      )}
 
       {/* Grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {!shouldReduce && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      )}
 
-      {/* Content */}
       <div
         ref={containerRef}
         className="relative z-10 max-w-4xl mx-auto px-6 text-center"
       >
-        {/* Animated name */}
         <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-gray-900 dark:text-white mb-4">
           {letters}
         </h1>
-
-        {/* Title */}
         <p className="hero-title opacity-0 text-base sm:text-xl md:text-2xl text-violet-400 font-light mb-6 tracking-widest uppercase">
           {profile.title}
         </p>
-
-        {/* Bio */}
         <p className="hero-bio opacity-0 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10 text-base md:text-lg leading-relaxed">
           {profile.bio}
         </p>
-
-        {/* CTA Buttons */}
         <div className="hero-buttons opacity-0 flex gap-4 justify-center mb-12">
           <Button
             size="lg"
@@ -151,13 +159,12 @@ export default function Hero({ profile }: { profile: Profile }) {
             Contact Me
           </Button>
         </div>
-
-        {/* Social links */}
         <div className="flex gap-6 justify-center">
           {profile.github && (
             <a
               href={profile.github}
               target="_blank"
+              rel="noreferrer"
               className="hero-socials opacity-0 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors text-sm tracking-widest uppercase"
             >
               GitHub
@@ -167,6 +174,7 @@ export default function Hero({ profile }: { profile: Profile }) {
             <a
               href={profile.linkedin}
               target="_blank"
+              rel="noreferrer"
               className="hero-socials opacity-0 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors text-sm tracking-widest uppercase"
             >
               LinkedIn
@@ -183,7 +191,6 @@ export default function Hero({ profile }: { profile: Profile }) {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="w-[1px] h-16 bg-gradient-to-b from-transparent to-violet-500 mx-auto animate-pulse" />
       </div>

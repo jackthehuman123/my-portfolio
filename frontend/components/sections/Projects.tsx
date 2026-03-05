@@ -6,10 +6,12 @@ import { Project } from "@/types";
 import { Badge } from "../ui/badge";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export default function Projects({ projects }: { projects: Project[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
+  const shouldReduce = useReducedMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,7 +20,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
           if (entry.isIntersecting && !hasAnimated.current) {
             hasAnimated.current = true;
 
-            // Section title
+            if (shouldReduce) {
+              document
+                .querySelectorAll(".projects-title, .project-card")
+                .forEach((el) => ((el as HTMLElement).style.opacity = "1"));
+              return;
+            }
+
             anime({
               targets: ".projects-title",
               opacity: [0, 1],
@@ -27,7 +35,6 @@ export default function Projects({ projects }: { projects: Project[] }) {
               easing: "easeOutExpo",
             });
 
-            // Cards staggered entrance
             anime({
               targets: ".project-card",
               opacity: [0, 1],
@@ -44,9 +51,10 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [shouldReduce]);
 
   const handleCardHover = (e: React.MouseEvent, entering: boolean) => {
+    if (shouldReduce) return; // ← skip on mobile
     anime({
       targets: e.currentTarget,
       scale: entering ? 1.03 : 1,
@@ -54,6 +62,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
       easing: "easeOutCubic",
     });
   };
+
   return (
     <section
       id="projects"

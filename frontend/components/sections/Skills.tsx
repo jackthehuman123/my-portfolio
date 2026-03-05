@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import anime from "animejs";
 import { Skill } from "@/types";
-
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 const CATEGORIES = [
   { key: "frontend", label: "Frontend" },
   { key: "backend", label: "Backend" },
@@ -12,6 +12,7 @@ const CATEGORIES = [
 export default function Skills({ skills }: { skills: Skill[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const hasAnimated = useRef(false);
+  const shouldReduce = useReducedMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,7 +21,24 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           if (entry.isIntersecting && !hasAnimated.current) {
             hasAnimated.current = true;
 
-            // Title entrance
+            if (shouldReduce) {
+              // Make everything visible instantly
+              document
+                .querySelectorAll(".skills-title, .skill-category, .skill-row")
+                .forEach((el) => ((el as HTMLElement).style.opacity = "1"));
+              // Still animate bars but faster
+              document.querySelectorAll(".skill-bar").forEach((bar) => {
+                const width = bar.getAttribute("data-width");
+                anime({
+                  targets: bar,
+                  width: `${width}%`,
+                  duration: 600,
+                  easing: "easeOutCubic",
+                });
+              });
+              return;
+            }
+
             anime({
               targets: ".skills-title",
               opacity: [0, 1],
@@ -29,7 +47,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               easing: "easeOutExpo",
             });
 
-            // Category headers
             anime({
               targets: ".skill-category",
               opacity: [0, 1],
@@ -39,7 +56,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               easing: "easeOutExpo",
             });
 
-            // Skill rows staggered
             anime({
               targets: ".skill-row",
               opacity: [0, 1],
@@ -49,7 +65,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               easing: "easeOutExpo",
             });
 
-            // Progress bars fill up
             setTimeout(() => {
               document.querySelectorAll(".skill-bar").forEach((bar) => {
                 const width = bar.getAttribute("data-width");
@@ -69,7 +84,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
-  }, [skills]);
+  }, [skills, shouldReduce]);
 
   const groupedSkills = CATEGORIES.reduce(
     (acc, cat) => {
