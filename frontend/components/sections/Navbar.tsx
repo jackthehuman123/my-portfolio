@@ -58,7 +58,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <button
-          className="nav-item opacity-0 text-gray-900 dark:text-white font-black text-lg tracking-tight hover:text-violet-500 transition-colors"
+          className="nav-item opacity-0 text-gray-900 dark:text-white font-black text-base md:text-lg tracking-tight hover:text-violet-500 transition-colors"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Portfolio
@@ -69,7 +69,7 @@ export default function Navbar() {
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className={`nav-item opacity-0 text-sm tracking-widest uppercase transition-colors ${
+              className={`nav-item opacity-0 text-xs md:text-sm tracking-widest uppercase transition-colors ${
                 activeSection === link.href
                   ? "text-violet-500"
                   : "text-gray-500 hover:text-gray-900 dark:hover:text-white"

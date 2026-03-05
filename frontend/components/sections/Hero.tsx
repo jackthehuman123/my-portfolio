@@ -111,17 +111,17 @@ export default function Hero({ profile }: { profile: Profile }) {
         className="relative z-10 max-w-4xl mx-auto px-6 text-center"
       >
         {/* Animated name */}
-        <h1 className="text-6xl md:text-8xl font-black tracking-tight text-gray-900 dark:text-white mb-4">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight text-gray-900 dark:text-white mb-4">
           {letters}
         </h1>
 
         {/* Title */}
-        <p className="hero-title opacity-0 text-xl md:text-2xl text-violet-400 font-light mb-6 tracking-widest uppercase">
+        <p className="hero-title opacity-0 text-base sm:text-xl md:text-2xl text-violet-400 font-light mb-6 tracking-widest uppercase">
           {profile.title}
         </p>
 
         {/* Bio */}
-        <p className="hero-bio opacity-0 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+        <p className="hero-bio opacity-0 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10 text-base md:text-lg leading-relaxed">
           {profile.bio}
         </p>
 
