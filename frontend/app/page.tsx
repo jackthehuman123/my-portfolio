@@ -11,6 +11,8 @@ export default async function Home() {
     getSkills(),
   ]);
 
+  console.log("projects:", projects);
+
   return (
     <main>
       <Hero profile={profile} />
