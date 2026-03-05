@@ -7,7 +7,3 @@ Personal website built with Next.js, Django, and PostgreSQL.
 - **Frontend**: Next.js + TypeScript + Tailwind + Anime.js
 - **Backend**: Django + Django REST Framework
 - **Database**: PostgreSQL
-
-## Getting Started
-
-_Instructions coming soon._
