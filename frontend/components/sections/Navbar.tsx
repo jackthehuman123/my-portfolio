@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const NAV_LINKS = [
   { label: "Projects", href: "projects" },
@@ -13,7 +14,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
-  // Entrance animation
   useEffect(() => {
     anime({
       targets: ".nav-item",
@@ -25,14 +25,11 @@ export default function Navbar() {
     });
   }, []);
 
-  // Track scroll for background blur + active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      // Determine active section
       const sections = ["projects", "skills", "contact"];
-      for (const id of sections.reverse()) {
+      for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el && window.scrollY >= el.offsetTop - 200) {
           setActiveSection(id);
@@ -55,20 +52,18 @@ export default function Navbar() {
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-800/50"
+          ? "bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800/50"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <button
-          className="nav-item opacity-0 text-white font-black text-lg tracking-tight hover:text-violet-400 transition-colors"
+          className="nav-item opacity-0 text-gray-900 dark:text-white font-black text-lg tracking-tight hover:text-violet-500 transition-colors"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           Portfolio
         </button>
 
-        {/* Nav links */}
         <div className="flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <button
@@ -76,17 +71,19 @@ export default function Navbar() {
               onClick={() => scrollTo(link.href)}
               className={`nav-item opacity-0 text-sm tracking-widest uppercase transition-colors ${
                 activeSection === link.href
-                  ? "text-violet-400"
-                  : "text-gray-500 hover:text-white"
+                  ? "text-violet-500"
+                  : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {link.label}
-              {/* Active indicator */}
               {activeSection === link.href && (
-                <span className="block h-px w-full bg-violet-400 mt-0.5" />
+                <span className="block h-px w-full bg-violet-500 mt-0.5" />
               )}
             </button>
           ))}
+
+          {/* Theme toggle */}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

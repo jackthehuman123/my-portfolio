@@ -90,7 +90,7 @@ export default function Hero({ profile }: { profile: Profile }) {
   ));
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-[#0a0a0a]">
       {/* Background orbs */}
       <div className="orb-1 absolute w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] top-10 -left-20 pointer-events-none" />
       <div className="orb-2 absolute w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px] bottom-10 -right-20 pointer-events-none" />
@@ -99,8 +99,8 @@ export default function Hero({ profile }: { profile: Profile }) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
@@ -111,7 +111,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         className="relative z-10 max-w-4xl mx-auto px-6 text-center"
       >
         {/* Animated name */}
-        <h1 className="text-6xl md:text-8xl font-black tracking-tight text-white mb-4">
+        <h1 className="text-6xl md:text-8xl font-black tracking-tight text-gray-900 dark:text-white mb-4">
           {letters}
         </h1>
 
@@ -121,7 +121,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         </p>
 
         {/* Bio */}
-        <p className="hero-bio opacity-0 text-gray-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+        <p className="hero-bio opacity-0 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
           {profile.bio}
         </p>
 
@@ -141,7 +141,7 @@ export default function Hero({ profile }: { profile: Profile }) {
           <Button
             size="lg"
             variant="outline"
-            className="rounded-full px-8 border-gray-700 text-gray-300 hover:bg-gray-800"
+            className="rounded-full px-8 border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -158,7 +158,7 @@ export default function Hero({ profile }: { profile: Profile }) {
             <a
               href={profile.github}
               target="_blank"
-              className="hero-socials opacity-0 text-gray-500 hover:text-white transition-colors text-sm tracking-widest uppercase"
+              className="hero-socials opacity-0 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors text-sm tracking-widest uppercase"
             >
               GitHub
             </a>
@@ -167,7 +167,7 @@ export default function Hero({ profile }: { profile: Profile }) {
             <a
               href={profile.linkedin}
               target="_blank"
-              className="hero-socials opacity-0 text-gray-500 hover:text-white transition-colors text-sm tracking-widest uppercase"
+              className="hero-socials opacity-0 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors text-sm tracking-widest uppercase"
             >
               LinkedIn
             </a>
@@ -175,7 +175,7 @@ export default function Hero({ profile }: { profile: Profile }) {
           {profile.email && (
             <a
               href={`mailto:${profile.email}`}
-              className="hero-socials opacity-0 text-gray-500 hover:text-white transition-colors text-sm tracking-widest uppercase"
+              className="hero-socials opacity-0 text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors text-sm tracking-widest uppercase"
             >
               Email
             </a>

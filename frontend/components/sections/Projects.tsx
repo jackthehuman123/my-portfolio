@@ -58,7 +58,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-32 bg-[#0a0a0a] relative"
+      className="py-32 bg-white dark:bg-[#0a0a0a] relative"
     >
       {/* Subtle top border */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-violet-500/50" />
@@ -69,7 +69,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
           <p className="projects-title opacity-0 text-violet-400 text-sm tracking-widest uppercase mb-3">
             My Work
           </p>
-          <h2 className="projects-title opacity-0 text-4xl md:text-5xl font-black text-white">
+          <h2 className="projects-title opacity-0 text-4xl md:text-5xl font-black text-gray-900 dark:text-white">
             Projects
           </h2>
         </div>
@@ -79,7 +79,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
           {projects.map((project) => (
             <Card
               key={project.id}
-              className="project-card opacity-0 bg-[#111] border border-gray-800 overflow-hidden cursor-pointer group min-h-[200px]"
+              className="project-card opacity-0 bg-white dark:bg-[#111] border border-gray-200 dark:border-gray-800 overflow-hidden cursor-pointer group min-h-[200px]"
               onMouseEnter={(e) => handleCardHover(e, true)}
               onMouseLeave={(e) => handleCardHover(e, false)}
             >
@@ -100,10 +100,10 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
               {/* Card content */}
               <div className="p-6">
-                <h3 className="text-white font-bold text-lg mb-2">
+                <h3 className="text-gray-900 dark:text-white font-bold text-lg mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
@@ -135,7 +135,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                     <Button
                       size="sm"
                       variant="outline"
-                      className="rounded-full text-xs px-4 border-gray-700 text-gray-300 hover:bg-gray-800"
+                      className="rounded-full text-xs px-4 border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => window.open(project.github_url, "_blank")}
                     >
                       GitHub

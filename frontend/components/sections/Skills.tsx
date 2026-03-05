@@ -83,7 +83,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-32 bg-[#0d0d0d] relative"
+      className="py-32 bg-gray-50 dark:bg-[#0d0d0d] relative"
     >
       {/* Top border */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-cyan-500/50" />
@@ -94,7 +94,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           <p className="skills-title opacity-0 text-cyan-400 text-sm tracking-widest uppercase mb-3">
             What I Know
           </p>
-          <h2 className="skills-title opacity-0 text-4xl md:text-5xl font-black text-white">
+          <h2 className="skills-title opacity-0 text-4xl md:text-5xl font-black text-gray-900 dark:text-white">
             Skills
           </h2>
         </div>
@@ -109,7 +109,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
               <div key={cat.key}>
                 {/* Category label */}
                 <h3 className="skill-category opacity-0 text-gray-500 text-xs tracking-widest uppercase mb-6 flex items-center gap-3">
-                  <span className="inline-block w-8 h-px bg-gray-700" />
+                  <span className="inline-block w-8 h-px bg-gray-300 dark:bg-gray-700" />
                   {cat.label}
                 </h3>
 
@@ -119,7 +119,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                     <div key={skill.id} className="skill-row opacity-0">
                       {/* Skill name + percentage */}
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-white text-sm font-medium">
+                        <span className="text-gray-800 dark:text-white text-sm font-medium">
                           {skill.name}
                         </span>
                         <span className="text-gray-500 text-xs">
@@ -128,7 +128,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                       </div>
 
                       {/* Progress bar track */}
-                      <div className="h-[3px] bg-gray-800 rounded-full overflow-hidden">
+                      <div className="h-[3px] bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                         <div
                           className="skill-bar h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-500"
                           style={{ width: "0%" }}

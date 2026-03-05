@@ -28,15 +28,15 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#0a0a0a] border-t border-gray-800/50 py-12">
+    <footer className="bg-white dark:bg-[#0a0a0a] border-t border-gray-200 dark:border-gray-800/50 py-12">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Left */}
-        <p className="footer-item opacity-0 text-gray-600 text-sm">
+        <p className="footer-item opacity-0 text-gray-400 dark:text-gray-600 text-sm">
           Built with Next.js, Django & Anime.js
         </p>
 
         {/* Center */}
-        <p className="footer-item opacity-0 text-gray-700 text-xs tracking-widest uppercase">
+        <p className="footer-item opacity-0 text-gray-400 dark:text-gray-700 text-xs tracking-widest uppercase">
           © {new Date().getFullYear()} — All rights reserved
         </p>
 
