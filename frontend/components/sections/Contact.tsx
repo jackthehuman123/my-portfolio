@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import anime from "animejs";
-import { sendContact } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -70,46 +69,25 @@ export default function Contact() {
 
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) return;
-
     setFormState("loading");
-
-    // Button loading animation
-    anime({
-      targets: ".contact-btn",
-      scale: [1, 0.95],
-      duration: 100,
-      easing: "easeOutCubic",
-    });
-
-    try {
-      await sendContact(form);
+    // Simulate sending — replace with EmailJS or Formspree later
+    setTimeout(() => {
       setFormState("success");
       setForm({ name: "", email: "", message: "" });
-
-      // Success animation
-      anime({
-        targets: ".success-msg",
-        opacity: [0, 1],
-        translateY: [10, 0],
-        duration: 500,
-        easing: "easeOutExpo",
-      });
-    } catch (err) {
-      setFormState("error");
-    }
+    }, 1000);
   };
 
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="py-32 bg-[#0a0a0a] relative"
+      className="py-32 bg-white dark:bg-[#0a0a0a] relative"
     >
       {/* Top border */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-violet-500/50" />
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none" />
 
       <div className="max-w-2xl mx-auto px-6">
         {/* Header */}
@@ -117,10 +95,10 @@ export default function Contact() {
           <p className="contact-title opacity-0 text-violet-400 text-sm tracking-widest uppercase mb-3">
             Get In Touch
           </p>
-          <h2 className="contact-title opacity-0 text-4xl md:text-5xl font-black text-white mb-4">
+          <h2 className="contact-title opacity-0 text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4">
             Contact Me
           </h2>
-          <p className="contact-title opacity-0 text-gray-400">
+          <p className="contact-title opacity-0 text-gray-500 dark:text-gray-400">
             Have a project in mind or just want to say hi? I'd love to hear from
             you.
           </p>
@@ -134,7 +112,7 @@ export default function Contact() {
               placeholder="Your name"
               value={form.name}
               onChange={handleChange}
-              className="bg-[#111] border-gray-800 text-white placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 h-12"
+              className="bg-white dark:bg-[#111] border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 h-12"
             />
           </div>
 
@@ -156,7 +134,7 @@ export default function Contact() {
               value={form.message}
               onChange={handleChange}
               rows={6}
-              className="bg-[#111] border-gray-800 text-white placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 resize-none"
+              className="bg-white dark:bg-[#111] border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 resize-none"
             />
           </div>
 
