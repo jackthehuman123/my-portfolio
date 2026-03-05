@@ -10,14 +10,14 @@ export default function Hero({ profile }: { profile: Profile }) {
   const shouldReduce = useReducedMotion();
 
   useEffect(() => {
-    if (shouldReduce) {
-      // Just fade everything in instantly on mobile
-      const els = document.querySelectorAll(
-        ".hero-letter, .hero-title, .hero-bio, .hero-buttons, .hero-socials",
-      );
-      els.forEach((el) => ((el as HTMLElement).style.opacity = "1"));
-      return;
-    }
+    // if (shouldReduce) {
+    //   // Just fade everything in instantly on mobile
+    //   const els = document.querySelectorAll(
+    //     ".hero-letter, .hero-title, .hero-bio, .hero-buttons, .hero-socials",
+    //   );
+    //   els.forEach((el) => ((el as HTMLElement).style.opacity = "1"));
+    //   return;
+    // }
 
     // Full animation on desktop
     anime

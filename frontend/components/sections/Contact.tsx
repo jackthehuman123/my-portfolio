@@ -123,7 +123,7 @@ export default function Contact() {
               placeholder="your@email.com"
               value={form.email}
               onChange={handleChange}
-              className="bg-[#111] border-gray-800 text-white placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 h-12"
+              className="bg-white dark:bg-[#111] border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 focus:border-violet-500 focus:ring-violet-500/20 h-12"
             />
           </div>
 
