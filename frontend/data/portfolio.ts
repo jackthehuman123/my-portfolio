@@ -17,7 +17,7 @@ export const projects = [
     tech_stack: ["Next.js", "Django", "PostgreSQL"],
     live_url: "https://personal-blog-2-next-js.onrender.com/blogs/",
     github_url: "https://github.com/jackthehuman123/personal-blog",
-    image_url: "",
+    image_url: "/images/personal-blog-png.png",
     order: 0,
     created_at: "2026-3-2",
   },
