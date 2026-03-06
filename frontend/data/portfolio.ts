@@ -2,7 +2,7 @@ export const profile = {
   name: "Hung Nguyen",
   id: 1,
   title: "Full Stack Developer",
-  bio: "I like to build things.",
+  bio: "Computer Science @ Virginia Tech",
   avatar_url: "https://github.com/jackthehuman123.png",
   github: "https://github.com/jacthehuman123",
   linkedin: "https://www.linkedin.com/in/hung-nguyen-724267338/",
