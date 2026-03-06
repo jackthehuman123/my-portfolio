@@ -10,15 +10,6 @@ export default function Hero({ profile }: { profile: Profile }) {
   const shouldReduce = useReducedMotion();
 
   useEffect(() => {
-    // if (shouldReduce) {
-    //   // Just fade everything in instantly on mobile
-    //   const els = document.querySelectorAll(
-    //     ".hero-letter, .hero-title, .hero-bio, .hero-buttons, .hero-socials",
-    //   );
-    //   els.forEach((el) => ((el as HTMLElement).style.opacity = "1"));
-    //   return;
-    // }
-
     // Full animation on desktop
     anime
       .timeline({ easing: "easeOutExpo" })
@@ -189,10 +180,6 @@ export default function Hero({ profile }: { profile: Profile }) {
             </a>
           )}
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent to-violet-500 mx-auto animate-pulse" />
       </div>
     </section>
   );

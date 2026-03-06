@@ -100,9 +100,6 @@ export default function Skills({ skills }: { skills: Skill[] }) {
       ref={sectionRef}
       className="py-32 bg-gray-50 dark:bg-[#0d0d0d] relative"
     >
-      {/* Top border */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-cyan-500/50" />
-
       <div className="max-w-4xl mx-auto px-6">
         {/* Section header */}
         <div className="mb-16">

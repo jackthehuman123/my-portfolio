@@ -69,9 +69,6 @@ export default function Projects({ projects }: { projects: Project[] }) {
       ref={sectionRef}
       className="py-32 bg-white dark:bg-[#0a0a0a] relative"
     >
-      {/* Subtle top border */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-violet-500/50" />
-
       <div className="max-w-6xl mx-auto px-6">
         {/* Section header */}
         <div className="mb-16">

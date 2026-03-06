@@ -83,9 +83,6 @@ export default function Contact() {
       ref={sectionRef}
       className="py-32 bg-white dark:bg-[#0a0a0a] relative"
     >
-      {/* Top border */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-violet-500/50" />
-
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none" />
 
