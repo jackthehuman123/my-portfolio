@@ -21,6 +21,39 @@ export const projects = [
     order: 0,
     created_at: "2026-3-2",
   },
+  {
+    id: 2,
+    title: "Real-Time Chat",
+    description:
+      "A real-time chat application with room-based messaging, Redis pub/sub fanout, and persistent message history.",
+    tech_stack: ["Django", "Django Channels", "Redis", "PostgreSQL", "Docker"],
+    live_url: "",
+    github_url: "https://github.com/jackthehuman123/ws_django",
+    image_url: "/images/ws-django-png.png",
+    order: 1,
+    created_at: "2026-4-18",
+  },
+  {
+    id: 3,
+    title: "MediScribe",
+    description:
+      "Real-time AI medical interpreter built at HooHacks 2026. Patient speaks their language, doctor sees English with medical flags. Doctor responds, patient hears back in their language.",
+    tech_stack: [
+      "React",
+      "Django",
+      "Django Channels",
+      "Electron",
+      "Gemini",
+      "ElevenLabs",
+      "Redis",
+      "PostgreSQL",
+    ],
+    live_url: "",
+    github_url: "https://github.com/Sabalpp/MediScribe",
+    image_url: "/images/mediscribe-png.png",
+    order: 2,
+    created_at: "2026-4-18",
+  },
 ];
 
 export const skills = [
